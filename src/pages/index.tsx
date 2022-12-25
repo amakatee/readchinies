@@ -118,9 +118,6 @@ const Home: NextPage = () => {
 
   console.log(pianyin)
 
-  const playPinYing = () => {
-   return  new Audio("https://yabla.vo.llnwd.net/media.yabla.com/audio/340410.mp3")
-  }
 
 
   return (
