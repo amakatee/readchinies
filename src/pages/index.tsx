@@ -105,7 +105,7 @@ const Home: NextPage = () => {
   const text: string = "我的名字 你因为"
   
   const splittedTextArray  = text.split('')
-  
+ 
   const updatedCharsArray = splittedTextArray.map(letter => {
     return characters.find(char => char.character === letter)
   })
