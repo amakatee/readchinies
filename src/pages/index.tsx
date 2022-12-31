@@ -76,7 +76,7 @@ const Home: NextPage = () => {
 
 
    }
-   let toneColor:string = ''
+   let toneColor = ''
 
    const switchColor = ( char: charactersArray ) => {
    
@@ -100,7 +100,7 @@ const Home: NextPage = () => {
       return toneColor
     }
   }
-  const text: string = "我的名字 你因为"
+  const text = "我的名字 你因为"
   
   const splittedTextArray  = text.split('')
  
