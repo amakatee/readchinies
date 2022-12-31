@@ -125,13 +125,14 @@ const Home: NextPage = () => {
         hello
         <div className="w-[90vw] m-auto flex text-xl gap-0.5 py-2 pl-2 font-mono  leading-6 text-indigo-600 whitespace-pre dark:text-indigo-300 border-t border-slate-100 dark:border-slate-400/10">
 
-        {updatedCharsArray.map((c,i ) => c ? 
+        {updatedCharsArray.map((c,i ) =>  (
+           c ? 
         
-          <div key={i} onClick={() => seePianYin(c)} className={`${switchColor(c)}`}>{c.character}</div> :
-          <div onClick={() => seePianYin(notExist)} className={`${switchColor(notExist)}`}>{notExist.character}</div>
-
-         
+           <div key={i} onClick={() => seePianYin(c)} className={`${switchColor(c)}`}>{c.character}</div> :
+           <div key={i} onClick={() => seePianYin(notExist)} className={`${switchColor(notExist)}`}>{notExist.character}</div>
         )
+  
+       )
         }
         <div  className="bg-white">{pianyin}</div>
          
