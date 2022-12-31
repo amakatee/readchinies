@@ -1,14 +1,12 @@
 import { type NextPage } from "next";
-import Head from "next/head";
-import Link from "next/link";
 import { useState } from "react";
 // import ReactHowler from 'react-howler'
-import { trpc } from "../utils/trpc";
+// import { trpc } from "../utils/trpc";
 
 
 
 const Home: NextPage = () => {
-  const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
+  // const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
   const [pianyin, setPianYin] = useState('')
 
 
