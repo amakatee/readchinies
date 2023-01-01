@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import { useState } from "react";
 // import ReactHowler from 'react-howler'
 import { trpc } from "../utils/trpc";
+
 import Link from "next/link";
 
 
@@ -191,7 +192,7 @@ const Home: NextPage = () => {
         </div>
       </main>
       <div>
-        {Allposts?.map((post:any, i: any) => <div key={i} >{post.title}</div>)}
+        {Allposts?.map((post:any, i: any) => <div key={i} > <Link href={post.id}>{post.title}</Link> </div>)}
       </div>
       <Link href='/createpost'>create text</Link>
       {charts.data ? <div className="text-[#AF8C9D]"> {charts.data.pleaseSub} k</div> : 'Loading'}

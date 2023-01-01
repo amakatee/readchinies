@@ -13,28 +13,46 @@ export const postsRouter = router({
     }))
     .mutation(async({ctx, input}) => {
         try{ 
-      
             return await ctx?.prisma?.post?.create({
-
                 data: {
                     title: input.title,
                     text: input.text
                 }
               
             })
-        
-
         }catch(err){
             console.log(err)
 
         }
 
     }),
+    detailPost:publicProcedure.input(z.object({
+        id: z.string()
+    })).query( async({ctx, input}) => {
+        const { id } = input
+        try {
+            return await ctx?.prisma?.post?.findUnique({
+                where: {
+                    id
+                },
+            }) 
+        } catch(err) {
+            console.log(err)
+        }
+    })
+    ,
     allPosts:publicProcedure.query(async({ctx}) =>{
         try{
-             return await ctx?.prisma?.post?.findMany()
-            // console.log(ctx)
-            // console.log('hellow orld')
+             return await ctx?.prisma?.post?.findMany({
+                 select: {
+                     title: true,
+                     id: true
+                 },
+                 orderBy: {
+                     createdAt: 'desc'
+                 }
+             })
+            
             // return await ctx?.prisma?.post?.findMany({
             //     select: {
             //         title: true,
@@ -50,7 +68,11 @@ export const postsRouter = router({
         }
         
         
-    })
+    }),
+
+  
+
+
           
 
 })

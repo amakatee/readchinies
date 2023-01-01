@@ -1,5 +1,6 @@
 import { type NextPage } from 'next'
 import React, {useState} from 'react'
+import { isGeneratorObject } from 'util/types'
 import { trpc} from '../utils/trpc'
 
 interface FormData  {
@@ -12,8 +13,17 @@ const NewPost : NextPage = () => {
 
     const addNewPost = trpc.posts.newPost.useMutation({
         onMutate: () => {
-            console.log('mutated')
+            utils.posts.allPosts.cancel()
+            const optimisticUpdates = utils.posts.allPosts.getData()
+            // if(optimisticUpdates) {
+            //     utils.posts.allPosts.setData(optimisticUpdates)
 
+            // }
+            
+
+        },
+        onSettled: () => {
+            utils.posts.allPosts.invalidate()
         }
     })
     
