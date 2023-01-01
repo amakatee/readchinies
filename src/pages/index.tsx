@@ -191,7 +191,7 @@ const Home: NextPage = () => {
         </div>
       </main>
       <div>
-        {Allposts?.map(post => <div>{post.title}</div>)}
+        {Allposts?.map((post:any, i) => <div key={i} >{post.title}</div>)}
       </div>
       <Link href='/createpost'>create text</Link>
       {charts.data ? <div className="text-[#AF8C9D]"> {charts.data.pleaseSub} k</div> : 'Loading'}
