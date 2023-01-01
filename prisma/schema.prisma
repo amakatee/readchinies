@@ -3,19 +3,20 @@
 
 generator client {
   provider = "prisma-client-js"
+
   //previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider     = "mysql"
+  provider     = "mongodb"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
-model Example {
-  id        String   @id @default(cuid())
-  name      String
-  checked   Boolean
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  text      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
