@@ -26,6 +26,38 @@ export const postsRouter = router({
         }
 
     }),
+
+
+    updatePost: publicProcedure
+    .input( z.object({
+        title: z.string(),
+        text :z.string(),
+        id: z.string()
+    })
+   
+    )
+    .mutation(async({ctx, input}) => {
+        const { id} = input 
+
+        try{ 
+            return await ctx?.prisma?.post?.update({
+               where: {
+                    id
+                },
+                data: {
+                    title: input.title,
+                    text: input.text
+                }
+              
+            })
+        }catch(err){
+            console.log(err)
+
+        }
+
+    }),
+    
+
     detailPost:publicProcedure.input(z.object({
         id: z.string()
     })).query( async({ctx, input}) => {
@@ -40,6 +72,7 @@ export const postsRouter = router({
             console.log(err)
         }
     })
+    
     ,
     allPosts:publicProcedure.query(async({ctx}) =>{
         try{
@@ -69,6 +102,29 @@ export const postsRouter = router({
         
         
     }),
+    deletePost: publicProcedure
+    .input(
+        z.object ({
+            id: z.string()
+        })
+    )
+    .mutation(async ({ctx, input}) => {
+        const {id} = input
+
+        try {
+            return await ctx.prisma.post.delete({
+                where: {
+                    id,
+                }
+            })
+        }catch(err) {
+            console.log(err)
+        }
+    })
+
+    
+
+   
 
   
 

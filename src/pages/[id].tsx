@@ -10,14 +10,19 @@ export default function PostDetail() {
         id: postId
     }) 
     console.log(postData?.text)
+    const deleting = trpc.posts.deletePost.useMutation()
     return (
         <>
           <div> ho </div>
           <div>{postData?.title}</div>
           <div>{postData?.text}</div>
           <div className="flex gap-1 ">
+              <div onClick={() => {
+                  deleting.mutate({id:postId})
+                  router.push('/')
+              }}>d</div>
           <Link  href='/'>Delete </Link>
-          <Link  href='/'>Edit </Link>
+          <Link  href={`/editpost/${postData?.id}`}>Edit </Link>
       
           </div>
         </>
